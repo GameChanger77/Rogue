@@ -5,23 +5,51 @@ Team member 2 Ray Redondo          | 40%
 Team member 3 Jacob Schulmeister V | 40%
 */
 
-// We together put in over 100% effort to make this the most awesome final project we could.
+// We together put in over 100% effort to make this the most awesome final
+// project we could.
+// I promise we're not just bad at math.
 
-//    INCLUDES    //
-#include<stdio.h>
+// SYSTEM INCLUDES //
+#include <stdio.h>
 
-// We have multiple structures defined in headers
+//     INCLUDES    //
+#include "input.h"
+#include "player.h"
+#include "render.h"
+#include "room.h"
+#include "roomgen.h"
 
-/////////////////////////////////////
-//User Defined Functions Prototype//
-//List prototypes here and define//
-//tehm below the main function////
+// You may notice a lack of structures, prototypes or definitions. This is
+// because we put almost every functional piece of code into a separate file
+// from the main function. Prototypes are in headers, definitions are in source
+// files.
 
-/////////////////////////////////
+//   DEFINITIONS   //
 int main(void) {
-    return 0;
-}
+    Player player;
 
-///////////////////////////////////////
-//User Defined Functions' Definition//
-/////////////////////////////////////
+    puts("Loading...");
+    roomgen_pregen();
+    render_init();
+
+    player.screen_x = 0;
+    player.screen_y = 0;
+
+    do {
+        Room *current_room = roomgen_get(player.screen_x, player.screen_y);
+        render_enter_room(current_room);
+
+        bool changed_room = false;
+        while(!changed_room) {
+            input_scan();
+            Direction direction = input_direction();
+            if(direction == None) {
+                render_anim();
+            } else {
+                changed_room = room_move(direction, &player, current_room);
+            }
+        }
+    } while(1);
+
+    puts("Have a nice day!");
+}
