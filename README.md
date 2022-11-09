@@ -1,7 +1,7 @@
 # Rogue
 Final project for SE 185 at ISU. Created by (Alphabetically by last name):
 
-Mathew Haleon
+Mathew Johnson
 Ray Redondo
 Jacob Schulmeister V
 
