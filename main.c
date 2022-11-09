@@ -1,20 +1,16 @@
-//SE 185: Final Project Template//
-/////////////////////////
-
 /* 
 Team xx (please insert your team number instead of xx)
-Team member 1 "Name" | "Percentage of Contribution to The Project"
-Team member 2 "Name" | "Percentage of Contribution to The Project"
-Team member 3 Jacob Schulmeister V | "Percentage of Contribution to The Project"
+Team member 1 Matthew Johnson      | 40%
+Team member 2 Ray Redondo          | 40%
+Team member 3 Jacob Schulmeister V | 40%
 */
 
-////////////////////
-#include<stdio.h>//
-//add more here////
+// We together put in over 100% effort to make this the most awesome final project we could.
 
-//////////////////////
-//Struct Definition//
-////////////////////
+//    INCLUDES    //
+#include<stdio.h>
+
+// We have multiple structures defined in headers
 
 /////////////////////////////////////
 //User Defined Functions Prototype//
@@ -22,9 +18,8 @@ Team member 3 Jacob Schulmeister V | "Percentage of Contribution to The Project"
 //tehm below the main function////
 
 /////////////////////////////////
-int main(){
-  
-  return 0;
+int main(void) {
+    return 0;
 }
 
 ///////////////////////////////////////
