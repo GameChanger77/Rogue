@@ -5,7 +5,7 @@
 Team xx (please insert your team number instead of xx)
 Team member 1 "Name" | "Percentage of Contribution to The Project"
 Team member 2 "Name" | "Percentage of Contribution to The Project"
-Team member 3 "Name" | "Percentage of Contribution to The Project"
+Team member 3 Jacob Schulmeister V | "Percentage of Contribution to The Project"
 */
 
 ////////////////////
