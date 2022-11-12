@@ -1,0 +1,26 @@
+
+
+https://jd-bots.com/2021/01/21/push-your-code-to-github-repository-using-command-line/
+
+git add "filename"
+
+git commit -m "first commit"
+
+
+git remote add origin <GitHub Repository URL>.git
+
+
+git push -u origin main
+
+
+git pull
+
+./ds4rd.exe -d 054c:09cc -D DS4_BT -t -b -j -bt | ./lab9 wordslist-1.txt
+
+gcc main.c input.c player.c render.c room.c roomgen.c -o main -lncurses
+./ds4rd.exe -d 054c:09cc -D DS4_BT -t -b -j | ./main
+
+
+
+gcc main.c -o main -lncurses
+

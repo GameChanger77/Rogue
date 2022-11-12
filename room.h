@@ -1,7 +1,9 @@
 #ifndef ROGUE_ROOM_H
 #define ROGUE_ROOM_H
 
+#include <stdbool.h>
 #include "player.h"
+#include "input.h"
 
 // Room is an opaque type and is defined in room.c
 typedef struct Room Room;

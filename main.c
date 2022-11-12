@@ -11,6 +11,8 @@ Team member 3 Jacob Schulmeister V | 40%
 
 // SYSTEM INCLUDES //
 #include <stdio.h>
+#include <stdbool.h>
+#include <ncurses.h>
 
 //     INCLUDES    //
 #include "input.h"
@@ -43,6 +45,8 @@ int main(void) {
         while(!changed_room) {
             input_scan();
             Direction direction = input_direction();
+			if (direction != 0)
+				mvprintw(0,0,"%d", direction);
             if(direction == None) {
                 render_anim();
             } else {
@@ -52,4 +56,5 @@ int main(void) {
     } while(1);
 
     puts("Have a nice day!");
+	endwin();
 }
