@@ -45,11 +45,10 @@ int main(void) {
         while(!changed_room) {
             input_scan();
             Direction direction = input_direction();
-			if (direction != 0)
-				mvprintw(0,0,"%d", direction);
             if(direction == None) {
                 render_anim();
             } else {
+				move_character(direction, &player);
                 changed_room = room_move(direction, &player, current_room);
             }
         }
