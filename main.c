@@ -34,21 +34,22 @@ int main(void) {
     roomgen_pregen();
     render_init();
 
+    player.room_x = 0;
+    player.room_y = 0;
     player.screen_x = 0;
     player.screen_y = 0;
 
     do {
         Room *current_room = roomgen_get(player.screen_x, player.screen_y);
-        render_enter_room(current_room);
+        render_enter_room(&player, current_room);
 
         bool changed_room = false;
         while(!changed_room) {
             input_scan();
             Direction direction = input_direction();
             if(direction == None) {
-                render_anim();
+                render_anim(&player, current_room);
             } else {
-				move_character(direction, &player);
                 changed_room = room_move(direction, &player, current_room);
             }
         }
