@@ -21,7 +21,7 @@ void move_character(Direction direction, Player* player){
 			break;
 	}
 	
-	mvprintw(player->screen_y, player->screen_x, "A");
-	mvprintw(oldY, oldX, " ");
+	mvaddch(player->screen_y, player->screen_x, 'A');
+	mvaddch(oldY, oldX, ' ');
 	
 }
