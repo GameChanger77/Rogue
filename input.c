@@ -21,7 +21,7 @@ Direction input_direction(){
 		JRYFlag = 1;
 		return Up;
 	} 
-	else if ((JRY <= 100 && JRY >= 0) || (JRY >= -100 && JRY < 0)){
+	else if ((JRY <= 80 && JRY >= 0) || (JRY >= -80 && JRY < 0)){
 		JRYFlag = 0;
 	} 
 	
@@ -32,7 +32,7 @@ Direction input_direction(){
 		JRXFlag = 1;
 		return Left;
 	} 
-	else if ((JRX <= 100 && JRX >= 0) || (JRX >= -100 && JRX < 0)){
+	else if ((JRX <= 80 && JRX >= 0) || (JRX >= -80 && JRX < 0)){
 		JRXFlag = 0;
 	} 
 	
