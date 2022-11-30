@@ -5,6 +5,9 @@
 #include "player.h"
 #include "input.h"
 
+#define ROOM_WIDTH 40
+#define ROOM_HEIGHT 20
+
 // Room is an opaque type and is defined in room.c
 typedef struct Room Room;
 
