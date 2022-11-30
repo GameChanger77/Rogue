@@ -13,18 +13,18 @@ int prev_player_y = 0;
 void render_enter_room(const Player *player, const Room *room) {
 	clear();
     mvprintw(0, 0, "Room: (%d, %d)", player->screen_x, player->screen_y);
-    for(int i = 0; i < 40; i++) {
-        mvaddch(1, 19 + i, '-');
-        mvaddch(22, 19 + i, '-');
+    for(int i = -1; i < 41; i++) {
+        if(i < 18 || i >= 22) {
+            mvaddch(1, 19 + i, '#');
+            mvaddch(22, 19 + i, '#');
+        }
     }
     for(int i = 0; i < 20; i++) {
-        mvaddch(2 + i, 18, '|');
-        mvaddch(2 + i, 59, '|');
+        if(i < 9 || i >= 11) {
+            mvaddch(2 + i, 18, '#');
+            mvaddch(2 + i, 59, '#');
+        }
     }
-    mvaddch(1, 18, '+');
-    mvaddch(22, 18, '+');
-    mvaddch(1, 59, '+');
-    mvaddch(22, 59, '+');
     // TODO: render contents of room
     mvaddch(player->room_y + 2, player->room_x + 19, 'A');
     prev_player_x = player->room_x;
