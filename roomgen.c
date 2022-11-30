@@ -1,5 +1,5 @@
-
 #include "room.h"
+#include "room-internal.h"
 
 Room* room;
 
