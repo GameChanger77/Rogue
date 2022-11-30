@@ -1,4 +1,5 @@
 #include "room.h"
+#include "room-internal.h"
 #include <stdbool.h>
 
 /**
