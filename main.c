@@ -35,7 +35,7 @@ int main(void) {
     render_init();
 
     player.room_x = 0;
-    player.room_y = 0;
+    player.room_y = 10;
     player.screen_x = 0;
     player.screen_y = 0;
 

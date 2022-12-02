@@ -11,9 +11,13 @@
 // Room is an opaque type and is defined in room.c
 typedef struct Room Room;
 
+// Inner tiles of room
+typedef char RoomData[20][40];
+
 // Tick the room based on player input
 bool room_move(Direction direction, Player *player, Room *room);
 
-typedef char RoomData[20][40];
+// Get the tiles that make up the room
+const RoomData* room_get_tiles(const Room *room);
 
 #endif // ROGUE_ROOM_H

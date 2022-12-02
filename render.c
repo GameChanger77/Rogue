@@ -10,7 +10,7 @@ void render_init(void) {
 char player_char = '>';
 
 int prev_player_x = 0;
-int prev_player_y = 0;
+int prev_player_y = 10;
 
 void render_enter_room(const Player *player, const Room *room) {
 	clear();
@@ -27,7 +27,19 @@ void render_enter_room(const Player *player, const Room *room) {
             mvaddch(2 + i, 59, '#');
         }
     }
-    // TODO: render contents of room
+    const RoomData *room_data = room_get_tiles(room);
+    for(int x = 0; x < 40; x++) {
+        for(int y = 0; y < 20; y++) {
+            switch((*room_data)[y][x]) {
+                case ' ': break;
+                case '#':
+                    mvaddch(2 + y, 19 + x, '#');
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     if(prev_player_y > player->room_y) player_char = 'v';
     else if(prev_player_y < player->room_y) player_char = '^';
     else if(prev_player_x > player->room_x) player_char = '>';
