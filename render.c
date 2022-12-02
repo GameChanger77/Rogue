@@ -7,6 +7,8 @@ void render_init(void) {
     refresh();
 }
 
+char player_char = '>';
+
 int prev_player_x = 0;
 int prev_player_y = 0;
 
@@ -26,7 +28,11 @@ void render_enter_room(const Player *player, const Room *room) {
         }
     }
     // TODO: render contents of room
-    mvaddch(player->room_y + 2, player->room_x + 19, 'A');
+    if(prev_player_y > player->room_y) player_char = 'v';
+    else if(prev_player_y < player->room_y) player_char = '^';
+    else if(prev_player_x > player->room_x) player_char = '>';
+    else if(prev_player_x < player->room_x) player_char = '<';
+    mvaddch(player->room_y + 2, player->room_x + 19, player_char);
     prev_player_x = player->room_x;
     prev_player_y = player->room_y;
     refresh();
@@ -35,7 +41,11 @@ void render_enter_room(const Player *player, const Room *room) {
 void render_anim(const Player *player, const Room *room) {
 	// stub
     mvaddch(prev_player_y + 2, prev_player_x + 19, ' ');
-    mvaddch(player->room_y + 2, player->room_x + 19, 'A');
+    if(prev_player_y > player->room_y) player_char = '^';
+    else if(prev_player_y < player->room_y) player_char = 'v';
+    else if(prev_player_x > player->room_x) player_char = '<';
+    else if(prev_player_x < player->room_x) player_char = '>';
+    mvaddch(player->room_y + 2, player->room_x + 19, player_char);
     prev_player_x = player->room_x;
     prev_player_y = player->room_y;
     refresh();
