@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 Room *easy;
 Room *medium;
@@ -39,5 +40,6 @@ void roomgen_pregen(){
 
 Room* roomgen_get(int x, int y){
     // stub
-    return easy;
+    
+    return &easy[abs(x + y) % 2];
 }
