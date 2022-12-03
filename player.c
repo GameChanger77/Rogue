@@ -31,7 +31,7 @@ void move_character(Direction direction, Player* player) {
 	//mvprintw(3, 1, "Tile = %d  ", room_get_tiles(roomgen_get(0,0))[0][desiredY][desiredX]);
 	//mvprintw(4, 1, "Tile = %c  ", room_get_tiles(roomgen_get(0,0))[0][desiredY][desiredX]);
 	
-	if (room_get_tiles(roomgen_get(0,0))[0][desiredY][desiredX] != '#'){
+	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#'){
 		player->room_x=desiredX;
 		player->room_y=desiredY;
 	}
