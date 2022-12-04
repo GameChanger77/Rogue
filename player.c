@@ -28,10 +28,10 @@ void move_character(Direction direction, Player* player) {
 	
 	//mvprintw(1, 1, "% 4d", desiredX);
 	//mvprintw(2, 1, "% 4d", desiredY);
-	//mvprintw(3, 1, "Tile = %d  ", room_get_tiles(roomgen_get(0,0))[0][desiredY][desiredX]);
-	//mvprintw(4, 1, "Tile = %c  ", room_get_tiles(roomgen_get(0,0))[0][desiredY][desiredX]);
+	//mvprintw(3, 1, "Tile = %d  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
+	//mvprintw(4, 1, "Tile = %c  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
 	
-	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#'){
+	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#' || desiredX < 0 || desiredX > 39){
 		player->room_x=desiredX;
 		player->room_y=desiredY;
 	}

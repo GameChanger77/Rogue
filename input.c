@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <ncurses.h>
 #include "input.h"
 
 int t = 0, Triangle = 0, Circle = 0, X = 0, Square = 0, JLX = 0, JLY = 0, JRX = 0, JRY = 0; 
@@ -13,6 +15,12 @@ int input_time(){
 }
 
 Direction input_direction(){
+	
+	if (Triangle){
+		endwin();
+		exit(0);
+	}
+		
 
 	if (JLY > 100 && JLYFlag == 0){ // Down
 		JLYFlag = 1;
