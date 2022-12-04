@@ -16,7 +16,7 @@ int input_time(){
 
 Direction input_direction(){
 	
-	if (Triangle){
+	if (Triangle){ // If button is changed then update the readme
 		endwin();
 		exit(0);
 	}

@@ -9,3 +9,5 @@ This is a roguelike game where the player controls an avatar by using a DualShoc
 
 ## Compiling & Running
 To compile, run `make`; to run, run `./ds4rd.exe -d 054c:09cc -D DS4_BT -t -b -j | ./main`
+
+To exit the game press the Triangle button
