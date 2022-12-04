@@ -10,6 +10,7 @@ typedef struct Player {
     // X and Y within the room we're in
     int room_x;
     int room_y;
+	int coins; // Keep track of score based on coins
 } Player;
 
 void move_character(Direction direction, Player* player);

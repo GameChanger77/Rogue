@@ -38,6 +38,7 @@ int main(void) {
     player.room_y = 10;
     player.screen_x = 0;
     player.screen_y = 0;
+    player.coins = 0;
 
     do {
         Room *current_room = roomgen_get(player.screen_x, player.screen_y);

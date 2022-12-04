@@ -26,13 +26,22 @@ void move_character(Direction direction, Player* player) {
 			break;
 	}
 	
-	//mvprintw(1, 1, "% 4d", desiredX);
-	//mvprintw(2, 1, "% 4d", desiredY);
-	//mvprintw(3, 1, "Tile = %d  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
-	//mvprintw(4, 1, "Tile = %c  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
+	mvprintw(1, 0, "Coins: %d", player->coins);
+	mvprintw(3, 1, "% 4d", desiredX);
+	mvprintw(4, 1, "% 4d", desiredY);
+	mvprintw(5, 1, "Tile = %d  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
+	mvprintw(6, 1, "Tile = %c  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
 	
+	// Collision Detection
 	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#' || desiredX < 0 || desiredX > 39){
 		player->room_x=desiredX;
 		player->room_y=desiredY;
+	}
+	
+	// Give the player a coin 
+	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] == 'C'){
+		player->coins++;
+		//(*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] = ' ';
+		
 	}
 }
