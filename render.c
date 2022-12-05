@@ -9,6 +9,7 @@ void render_init(void) {
     init_color(COLOR_YELLOW, 1000, 1000, 0);
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     init_pair(2, COLOR_WHITE, COLOR_WHITE);
+    init_pair(3, COLOR_CYAN, COLOR_BLACK);
     refresh();
 }
 
@@ -40,6 +41,7 @@ static void render_check_coin(int x, int y, const Room *room) {
 void render_enter_room(const Player *player, const Room *room) {
 	clear();
     mvprintw(0, 0, "Room: (%d, %d)", player->screen_x, player->screen_y);
+    mvprintw(1, 0, "Coins: %d", player->coins);
     char coin_char = render_get_coin_char();
     attron(COLOR_PAIR(2));
     for(int i = -1; i < 41; i++) {
@@ -88,6 +90,7 @@ void render_enter_room(const Player *player, const Room *room) {
 void render_anim(const Player *player, const Room *room) {
     char coin_char = render_get_coin_char();
     const RoomData *room_data = room_get_tiles(room);
+    mvprintw(1, 0, "Coins: %d", player->coins);
     for(int x = 0; x < 40; x++) {
         for(int y = 0; y < 20; y++) {
             switch((*room_data)[y][x]) {
