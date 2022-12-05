@@ -8,6 +8,7 @@ void render_init(void) {
     start_color();
     init_color(COLOR_YELLOW, 1000, 1000, 0);
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(2, COLOR_WHITE, COLOR_WHITE);
     refresh();
 }
 
@@ -19,9 +20,9 @@ int prev_player_y = 10;
 bool coin_north, coin_south, coin_west, coin_east;
 
 static char render_get_coin_char() {
-    int time = input_time() % 800;
-    init_color(COLOR_YELLOW, 1000, 1000, (time < 200 ? time : 800 - time) + 300);
-    time %= 400;
+    int time = input_time() % 400;
+    if(time >= 100 && time < 200) init_pair(1, COLOR_WHITE, COLOR_BLACK);
+    else                          init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     if(time < 100) return '@';
     if(time < 200) return '0';
     if(time < 300) return '!';
@@ -40,25 +41,29 @@ void render_enter_room(const Player *player, const Room *room) {
 	clear();
     mvprintw(0, 0, "Room: (%d, %d)", player->screen_x, player->screen_y);
     char coin_char = render_get_coin_char();
+    attron(COLOR_PAIR(2));
     for(int i = -1; i < 41; i++) {
         if(i < 18 || i >= 22) {
-            mvaddch(1, 19 + i, '#');
-            mvaddch(22, 19 + i, '#');
+            mvaddch(1, 19 + i, ' ');
+            mvaddch(22, 19 + i, ' ');
         }
     }
     for(int i = 0; i < 20; i++) {
         if(i < 9 || i >= 11) {
-            mvaddch(2 + i, 18, '#');
-            mvaddch(2 + i, 59, '#');
+            mvaddch(2 + i, 18, ' ');
+            mvaddch(2 + i, 59, ' ');
         }
     }
+    attroff(COLOR_PAIR(2));
     const RoomData *room_data = room_get_tiles(room);
     for(int x = 0; x < 40; x++) {
         for(int y = 0; y < 20; y++) {
             switch((*room_data)[y][x]) {
                 case ' ': break;
                 case '#':
-                    mvaddch(2 + y, 19 + x, '#');
+                    attron(COLOR_PAIR(2));
+                    mvaddch(2 + y, 19 + x, ' ');
+                    attroff(COLOR_PAIR(2));
                     break;
                 case 'C':
                     attron(COLOR_PAIR(1));
