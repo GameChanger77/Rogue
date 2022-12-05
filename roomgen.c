@@ -94,11 +94,9 @@ EHMHE            */
 }
 
 Room* roomgen_get(int x, int y){
-    if(DEBUG_MODE)
-        printf("%d, %d", x, y);
+    x += 2;
+    y += 2;
     while(x<0) x += 5;
-    while(y<0) y+= 5;
-    if(DEBUG_MODE)
-        printf("%d, %d", x, y);
-    return grid[x%5+2][y%5+2];
+    while(y<0) y += 5;
+    return grid[x%5][y%5];
 }
