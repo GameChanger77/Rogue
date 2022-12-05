@@ -27,9 +27,9 @@ void move_character(Direction direction, Player* player) {
 	}
 	
 	
-	mvprintw(1, 0, "Coins: %d", player->coins);
 	
 	/* Debugging stuff
+	mvprintw(1, 0, "Coins: %d", player->coins);
 	mvprintw(3, 1, "% 4d", desiredX);
 	mvprintw(4, 1, "% 4d", desiredY);
 	mvprintw(5, 1, "Tile = %d  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
@@ -46,6 +46,6 @@ void move_character(Direction direction, Player* player) {
 	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] == 'C'){
 		player->coins++;
 		room_set_tile(roomgen_get(player->screen_x,player->screen_y), desiredX, desiredY, ' ');
-		
 	}
+	
 }

@@ -4,7 +4,7 @@
 #include "input.h"
 
 int t = 0, Triangle = 0, Circle = 0, X = 0, Square = 0, JLX = 0, JLY = 0, JRX = 0, JRY = 0;
-int deadZone = 10, PJLX = 0, PJLY = 0, xCount = 0, yCount = 0, limitX = 1000, limitY = 600;
+int deadZone = 10, PJLX = 0, PJLY = 0, xCount = 0, yCount = 0, limitX = 1200, limitY = 2000;
 
 void input_scan(){ // Scan in the input
 	scanf("%d, %d,%d,%d,%d, %d, %d, %d, %d ", &t, &Triangle, &Circle, &X, &Square, &JLX, &JLY, &JRX, &JRY);
@@ -30,8 +30,10 @@ Direction input_direction(){
 	PJLY = JLY;
 
 	if (JLX < -deadZone || JLX > deadZone) xCount += JLX;
+	else xCount = 0;
 	if (JLY < -deadZone || JLY > deadZone) yCount += JLY;
-
+	else yCount = 0;
+	
 	if (xCount > limitX){
 		xCount = 0;
 		return Right;
