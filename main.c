@@ -11,10 +11,11 @@ Team member 3 Jacob Schulmeister V | 40%
 // I promise we're not just bad at math.
 
 // SYSTEM INCLUDES //
+#include <ncurses.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ncurses.h>
+#include <string.h>
 
 //     INCLUDES    //
 #include "config.h"
