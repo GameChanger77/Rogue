@@ -3,7 +3,7 @@
 
 EXE=main.exe
 OBJ=config.o input.o main.o player.o render.o room.o roomgen.o
-CFLAGS=-O3
+CFLAGS=-O3 -g
 LIBS=-lm -lncurses
 
 all: $(EXE)
