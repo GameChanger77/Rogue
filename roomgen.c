@@ -50,7 +50,11 @@ void roomgen_pregen(){
 
     if(DEBUG_MODE)
         puts("Shuffling levels...");
-    srand(IS_SEED_SET?SET_SEED:time(NULL));
+
+    long seed = IS_SEED_SET?SET_SEED:time(NULL);
+    if(DEBUG_MODE)
+        printf("Seed: %d\n", seed);
+    srand(seed);
     for(int i = NUM_EASY; i > 0; i--) {
         int rnum = rand() % i;
         Room *temp = easy[i];
@@ -94,11 +98,9 @@ EHMHE            */
 }
 
 Room* roomgen_get(int x, int y){
-    if(DEBUG_MODE)
-        printf("%d, %d", x, y);
+    x += 2;
+    y += 2;
     while(x<0) x += 5;
-    while(y<0) y+= 5;
-    if(DEBUG_MODE)
-        printf("%d, %d", x, y);
-    return grid[x%5+2][y%5+2];
+    while(y<0) y += 5;
+    return grid[x%5][y%5];
 }
