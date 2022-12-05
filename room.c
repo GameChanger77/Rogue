@@ -35,3 +35,7 @@ bool room_move(Direction direction, Player *player, Room *room) {
 const RoomData* room_get_tiles(const Room *room) {
 	return &room->tiles;
 }
+
+void room_set_tile(Room *room, int x, int y, char tile) {
+	room->tiles[y][x] = tile;
+}

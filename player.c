@@ -41,7 +41,7 @@ void move_character(Direction direction, Player* player) {
 	// Give the player a coin 
 	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] == 'C'){
 		player->coins++;
-		//(*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] = ' ';
+		room_set_tile(roomgen_get(player->screen_x,player->screen_y), desiredX, desiredY, ' ');
 		
 	}
 }
