@@ -26,8 +26,10 @@ void move_character(Direction direction, Player* player) {
 			break;
 	}
 	
-	/* Debugging stuff
+	
 	mvprintw(1, 0, "Coins: %d", player->coins);
+	
+	/* Debugging stuff
 	mvprintw(3, 1, "% 4d", desiredX);
 	mvprintw(4, 1, "% 4d", desiredY);
 	mvprintw(5, 1, "Tile = %d  ", (*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX]);
@@ -35,7 +37,7 @@ void move_character(Direction direction, Player* player) {
 	*/
 	
 	// Collision Detection
-	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#' || desiredX < 0 || desiredX > 39){
+	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#' || desiredX < 0 || desiredX > 39 || desiredY < 0 || desiredY > 19){
 		player->room_x=desiredX;
 		player->room_y=desiredY;
 	}
