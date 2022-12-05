@@ -42,9 +42,9 @@ int main(int argc, char **argv) {
             else puts("warning: debug flag set multiple times");
         } else {
             char *end;
-            long seed = strtol(argv[i], &end, 10);
-            if(end != (argv[i] + strlen(argv[i]))) {
-                printf("error: unexpected argument \"%s\"; expected -d or a number\n", argv[i]);
+            long seed = strtol(argv[i], &end, 10); // Convert to a long
+            if(end != (argv[i] + strlen(argv[i]))) { // And if the entire string isn't a number...
+                printf("error: unexpected argument \"%s\"; expected -d or a number\n", argv[i]); // crash
                 arg_error = 1;
             } else if(IS_SEED_SET) puts("warning: seed set multiple times; using last one");
             else {
