@@ -55,19 +55,19 @@ void roomgen_pregen(){
     if(DEBUG_MODE)
         printf("Seed: %d\n", seed);
     srand(seed);
-    for(int i = NUM_EASY; i > 0; i--) {
+    for(int i = NUM_EASY-1; i > 0; i--) {
         int rnum = rand() % i;
         Room *temp = easy[i];
         easy[i] = easy[rnum];
         easy[rnum] = temp;
     }
-    for(int i = NUM_MEDIUM; i > 0; i--) {
+    for(int i = NUM_MEDIUM-1; i > 0; i--) {
         int rnum = rand() % i;
         Room *temp = medium[i];
         medium[i] = medium[rnum];
         medium[rnum] = temp;
     }
-    for(int i = NUM_HARD; i > 0; i--) {
+    for(int i = NUM_HARD-1; i > 0; i--) {
         int rnum = rand() % i;
         Room *temp = hard[i];
         hard[i] = hard[rnum];
