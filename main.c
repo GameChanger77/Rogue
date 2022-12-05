@@ -1,5 +1,6 @@
 /* 
 Team xx (please insert your team number instead of xx)
+We were never given a team number, sorry :(
 Team member 1 Matthew Johnson      | 40%
 Team member 2 Ray Redondo          | 40%
 Team member 3 Jacob Schulmeister V | 40%
@@ -10,11 +11,13 @@ Team member 3 Jacob Schulmeister V | 40%
 // I promise we're not just bad at math.
 
 // SYSTEM INCLUDES //
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <ncurses.h>
 
 //     INCLUDES    //
+#include "config.h"
 #include "input.h"
 #include "player.h"
 #include "render.h"
@@ -27,10 +30,35 @@ Team member 3 Jacob Schulmeister V | 40%
 // files.
 
 //   DEFINITIONS   //
-int main(void) {
+int main(int argc, char **argv) {
     Player player;
 
     puts("Loading...");
+
+    bool arg_error = 0;
+    for(int i = 1; i < argc; i++) {
+        if(!strcmp(argv[i], "--debug") || !strcmp(argv[i], "-d")) {
+            if(!DEBUG_MODE) DEBUG_MODE = 1;
+            else puts("warning: debug flag set multiple times");
+        } else {
+            char *end;
+            long seed = strtol(argv[i], &end, 10);
+            if(end != (argv[i] + strlen(argv[i]))) {
+                printf("error: unexpected argument \"%s\"; expected -d or a number\n", argv[i]);
+                arg_error = 1;
+            } else if(IS_SEED_SET) puts("warning: seed set multiple times; using last one");
+            else {
+                IS_SEED_SET = 1;
+                SET_SEED = seed;
+            }
+        }
+    }
+
+    if(arg_error) {
+        puts("errors were detected on the command line, exiting");
+        return 1;
+    }
+
     roomgen_pregen();
     render_init();
 
