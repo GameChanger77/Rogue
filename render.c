@@ -22,7 +22,7 @@ static char render_get_coin_char() {
     int time = input_time() % 800;
     init_color(COLOR_YELLOW, 1000, 1000, (time < 200 ? time : 800 - time) + 300);
     time %= 400;
-    if(time < 100) return 'O';
+    if(time < 100) return '@';
     if(time < 200) return '0';
     if(time < 300) return '!';
     else           return '0';
