@@ -154,11 +154,6 @@ void render_anim(const Player *player, const Room *room) {
     }
 
     // Alright; since we don't have time to rig a proper animation system, we have hardcoded nonsense :)
-    // #    ###  #    #    ###  # # #
-    // #    #    #    #    # #  # # #
-    // #    ##   #    #    # #  # # #
-    // #    #    #    #    # #  # # #
-    // ###  ###  ###  ###  ###  #####
     if(coin_anim_on) {
         int timer = input_time() - coin_anim_start;
         if(timer < 100) {
@@ -179,11 +174,11 @@ void render_anim(const Player *player, const Room *room) {
             render_room_tile(coin_anim_x, coin_anim_y, room_data); // but fix the middle tile
         } else if(timer < 300) {
             attron(COLOR_PAIR(4));
-            for(int i = -1; i <= 1; i++) {
-                plot_char(coin_anim_x+i, coin_anim_y-2, ' '); // Even bigger lellow
-                plot_char(coin_anim_x+i, coin_anim_y+2, ' ');
-                plot_char(coin_anim_x-2, coin_anim_y+i, ' ');
-                plot_char(coin_anim_x+2, coin_anim_y+i, ' ');
+            for(int i = -1; i <= 1; i++) {                    // #    ###  #    #    ###  # # #
+                plot_char(coin_anim_x+i, coin_anim_y-2, ' '); // #    #    #    #    # #  # # #
+                plot_char(coin_anim_x+i, coin_anim_y+2, ' '); // #    ##   #    #    # #  # # #
+                plot_char(coin_anim_x-2, coin_anim_y+i, ' '); // #    #    #    #    # #  # # #
+                plot_char(coin_anim_x+2, coin_anim_y+i, ' '); // ###  ###  ###  ###  ###  #####
             }
             attroff(COLOR_PAIR(4));
             render_room_tile(coin_anim_x-1, coin_anim_y-1, room_data); // And even more fixing
