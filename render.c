@@ -52,10 +52,10 @@ static void render_check_coin(int x, int y, const Room *room) {
     }
 
     const RoomData *room_data = room_get_tiles(room);
-    coin_north = y > 0 && (*room_data)[x][y + 1] == 'C';
-    coin_south = y < 19 && (*room_data)[x][y - 1] == 'C';
-    coin_west = x > 0 && (*room_data)[x + 1][y] == 'C';
-    coin_east = x < 39 && (*room_data)[x - 1][y] == 'C';
+    coin_north = y > 0 && (*room_data)[x][y - 1] == 'C';
+    coin_south = y < 19 && (*room_data)[x][y + 1] == 'C';
+    coin_west = x > 0 && (*room_data)[x - 1][y] == 'C';
+    coin_east = x < 39 && (*room_data)[x + 1][y] == 'C';
 }
 
 void render_room_tile(int x, int y, const RoomData *room_data) {
