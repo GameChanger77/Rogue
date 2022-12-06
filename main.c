@@ -85,16 +85,14 @@ int main(int argc, char **argv) {
             // Movement
             if(direction == None) { // Stay Still
                 render_anim(&player, current_room);
-            } else { // Move character
+                if(player.coins >= 50) {
+                    while(render_win(&player, current_room)) input_scan();
+                    endwin();
+                    puts("You win!");
+                    goto end;
+                }
+            } else {
                 changed_room = room_move(direction, &player, current_room);
-            }
-
-            // Check to see if player has won
-            if(player.coins >= 5) {
-                while(render_win(&player, current_room)) input_scan();
-                endwin();
-                puts("You win!");
-                goto end;
             }
         }
     } while(1);
