@@ -1,4 +1,4 @@
-#include <ncurses.h>
+//#include <ncurses.h>
 
 #include "player.h"
 #include "input.h"
@@ -6,9 +6,11 @@
 
 
 void move_character(Direction direction, Player* player) {
+	// get the player X and Y
 	int desiredX = player->room_x;
 	int desiredY = player->room_y;
 	
+	// Get X and Y coins that the player is trying to move to
 	switch (direction) {
 		case Up:
 			desiredY-=1;
@@ -37,6 +39,7 @@ void move_character(Direction direction, Player* player) {
 	*/
 	
 	// Collision Detection
+	// See if the new x and y is a wall 
 	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] != '#' || desiredX < 0 || desiredX > 39 || desiredY < 0 || desiredY > 19){
 		player->room_x=desiredX;
 		player->room_y=desiredY;
@@ -45,7 +48,7 @@ void move_character(Direction direction, Player* player) {
 	// Give the player a coin 
 	if ((*room_get_tiles(roomgen_get(player->screen_x,player->screen_y)))[desiredY][desiredX] == 'C'){
 		player->coins++;
-		room_set_tile(roomgen_get(player->screen_x,player->screen_y), desiredX, desiredY, ' ');
+		room_set_tile(roomgen_get(player->screen_x,player->screen_y), desiredX, desiredY, ' '); // Remove the coin tile
 	}
 	
 }
