@@ -6,7 +6,6 @@ void render_init(void) {
 	// stub
     initscr();
     start_color();
-    init_color(COLOR_YELLOW, 1000, 1000, 0);
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     init_pair(2, COLOR_WHITE, COLOR_WHITE);
     init_pair(3, COLOR_CYAN, COLOR_BLACK);
@@ -200,4 +199,26 @@ void render_anim(const Player *player, const Room *room) {
     prev_player_x = player->room_x;
     prev_player_y = player->room_y;
     refresh();
+}
+
+int win_time = 0;
+
+bool render_win(const Player *player, const Room *room) {
+    if(!win_time) win_time = input_time();
+    int time = input_time() - win_time;
+    while(time < 3000) {
+        if(time % 1000 < 500) {
+            clear();
+            init_pair(1, COLOR_WHITE, COLOR_WHITE);
+            init_pair(2, COLOR_WHITE, COLOR_WHITE);
+            init_pair(3, COLOR_WHITE, COLOR_WHITE);
+            init_pair(4, COLOR_WHITE, COLOR_WHITE);
+        } else {
+            render_enter_room(player, room); // Re-render the room
+            init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+            init_pair(2, COLOR_WHITE, COLOR_WHITE);
+            init_pair(3, COLOR_CYAN, COLOR_BLACK);
+            init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
+        }
+    }
 }

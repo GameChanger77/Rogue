@@ -82,9 +82,17 @@ int main(int argc, char **argv) {
             } else {
                 changed_room = room_move(direction, &player, current_room);
             }
+            if(player.coins >= 50) {
+                while(render_win(&player, current_room)) input_scan();
+                endwin();
+                puts("You win!");
+                goto end;
+            }
         }
     } while(1);
-
-    puts("Have a nice day!");
 	endwin();
+
+end:
+    // TODO: Scoreboard
+    puts("Have a nice day!");
 }

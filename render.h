@@ -13,4 +13,8 @@ void render_enter_room(const Player *player, const Room *room);
 // Nothing has happened, run animations
 void render_anim(const Player *player, const Room *room);
 
+// Win the game. Ez
+// Returns false when the win animation is over
+bool render_win(const Player *player, const Room *room);
+
 #endif // ROGUE_RENDER_H
