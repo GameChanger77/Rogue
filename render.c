@@ -50,6 +50,12 @@ static void render_check_coin(int x, int y, int coins) {
 }
 
 void render_room_tile(int x, int y, const RoomData *room_data) {
+    if(x < 0 || x > 19 || y < 0 || y > 39) {
+        attron(COLOR_PAIR(2));
+        mvaddch(2 + y, 19 + x, ' ');
+        attroff(COLOR_PAIR(2));
+        return;
+    }
     char coin_char = render_get_coin_char();
     switch((*room_data)[y][x]) {
         case ' ':
