@@ -208,7 +208,7 @@ bool render_win(const Player *player, const Room *room) {
     if(!win_time) win_time = input_time();
     int time = input_time() - win_time;
     if(time < 3000) {
-        if(time % 1000 < 500) {
+        if(time % 1000 < 750 && time % 1000 > 250) {
             init_pair(1, COLOR_WHITE, COLOR_WHITE);
             bkgd(COLOR_PAIR(1) | ' ');
             clear();
