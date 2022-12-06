@@ -32,10 +32,12 @@ bool room_move(Direction direction, Player *player, Room *room) {
 	return changed_room;
 }
 
+// Get the room's tiles
 const RoomData* room_get_tiles(const Room *room) {
 	return &room->tiles;
 }
 
+// Set the room's tile to a different character
 void room_set_tile(Room *room, int x, int y, char tile) {
 	room->tiles[y][x] = tile;
 }

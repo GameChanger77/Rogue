@@ -2,24 +2,30 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include "input.h"
+#include "config.h"
 
 int t = 0, Triangle = 0, Circle = 0, X = 0, Square = 0, JLX = 0, JLY = 0, JRX = 0, JRY = 0;
 int deadZone = 30, PJLX = 0, PJLY = 0, xCount = 0, yCount = 0, limitX = 1200, limitY = 2000;
 
-void input_scan(){ // Scan in the input
+// Scan in the input
+void input_scan(){ 
 	scanf("%d, %d,%d,%d,%d, %d, %d, %d, %d ", &t, &Triangle, &Circle, &X, &Square, &JLX, &JLY, &JRX, &JRY);
 }
 
-int input_time(){ // Gets the time from the controller
+// Gets the time from the controller
+int input_time(){ 
 	return t;
 }
 
 Direction input_direction(){
 	
-	if (Triangle){ // Exit the game
+	// Exit the game
+	if (Triangle){ 
 		endwin();
 		exit(0);
 	}
+
+	// if (Circle && DEBUG_MODE) player
 
 	// Add to the movement buffers
 	if(JLX > deadZone && PJLX <= deadZone) xCount = limitX;
@@ -37,25 +43,29 @@ Direction input_direction(){
 	else yCount = 0;
 
 	// Return the direction to move
-	if (xCount > limitX){
+	if (xCount > limitX){ // Right
 		xCount = 0;
 		return Right;
 	}
 	
-	if (xCount < -limitX){
+	if (xCount < -limitX){ // Left
 		xCount = 0;
 		return Left;
 	}
 
-	if (yCount > limitY){
+	if (yCount > limitY){ // Down
 		yCount = 0;
 		return Down;
 	}
 
-	if (yCount < -limitY){
+	if (yCount < -limitY){ // Up
 		yCount = 0;
 		return Up;
 	}
 	
 	return None; // Stand Still
+}
+
+int get_circle(){
+	return Circle;
 }

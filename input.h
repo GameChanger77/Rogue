@@ -18,4 +18,5 @@ Direction input_direction(void);
 // Return the most recent time value scanned in
 int input_time(void);
 
+int get_circle(void);
 #endif // ROGUE_INPUT_H
