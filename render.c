@@ -50,7 +50,7 @@ static void render_check_coin(int x, int y, int coins) {
 }
 
 void render_room_tile(int x, int y, const RoomData *room_data) {
-    if(x < 0 || x > 19 || y < 0 || y > 39) {
+    if(x < 0 || x > 39 || y < 0 || y > 19) {
         attron(COLOR_PAIR(2));
         mvaddch(2 + y, 19 + x, ' ');
         attroff(COLOR_PAIR(2));
@@ -155,7 +155,7 @@ void render_anim(const Player *player, const Room *room) {
             render_room_tile(coin_anim_x, coin_anim_y, room_data);
         } else if(timer < 300) {
             attron(COLOR_PAIR(4));
-            for(int i = -2; i <= 2; i++) {
+            for(int i = -1; i <= 1; i++) {
                 plot_char(coin_anim_x+i, coin_anim_y-2, ' ');
                 plot_char(coin_anim_x+i, coin_anim_y+2, ' ');
                 plot_char(coin_anim_x-2, coin_anim_y+i, ' ');
@@ -171,7 +171,7 @@ void render_anim(const Player *player, const Room *room) {
             render_room_tile(coin_anim_x+1, coin_anim_y, room_data);
             render_room_tile(coin_anim_x+1, coin_anim_y+1, room_data);
         } else {
-            for(int i = -2; i <= 2; i++) {
+            for(int i = -1; i <= 1; i++) {
                 render_room_tile(coin_anim_x+i, coin_anim_y-2, room_data);
                 render_room_tile(coin_anim_x+i, coin_anim_y+2, room_data);
                 render_room_tile(coin_anim_x-2, coin_anim_y+i, room_data);
