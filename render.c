@@ -154,6 +154,11 @@ void render_anim(const Player *player, const Room *room) {
     }
 
     // Alright; since we don't have time to rig a proper animation system, we have hardcoded nonsense :)
+    // #    ###  #    #    ###  # # #
+    // #    #    #    #    # #  # # #
+    // #    ##   #    #    # #  # # #
+    // #    #    #    #    # #  # # #
+    // ###  ###  ###  ###  ###  #####
     if(coin_anim_on) {
         int timer = input_time() - coin_anim_start;
         if(timer < 100) {
