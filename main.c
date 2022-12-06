@@ -36,6 +36,7 @@ int main(int argc, char **argv) {
 
     puts("Loading...");
 
+    // Argument parser
     bool arg_error = 0;
     for(int i = 1; i < argc; i++) {
         if(!strcmp(argv[i], "--debug") || !strcmp(argv[i], "-d")) {
@@ -60,6 +61,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    // Initialize
     roomgen_pregen();
     render_init();
 
@@ -67,21 +69,27 @@ int main(int argc, char **argv) {
     player.room_y = 10;
     player.screen_x = 0;
     player.screen_y = 0;
-    player.coins = 0;
+    player.coins = 4;
 
+    // Game loop
     do {
         Room *current_room = roomgen_get(player.screen_x, player.screen_y);
         render_enter_room(&player, current_room);
 
         bool changed_room = false;
         while(!changed_room) {
+            // Get input from the controller
             input_scan();
             Direction direction = input_direction();
-            if(direction == None) {
+
+            // Movement
+            if(direction == None) { // Stay Still
                 render_anim(&player, current_room);
-            } else {
+            } else { // Move character
                 changed_room = room_move(direction, &player, current_room);
             }
+
+            // Check to see if player has won
             if(player.coins >= 5) {
                 while(render_win(&player, current_room)) input_scan();
                 endwin();
@@ -90,7 +98,7 @@ int main(int argc, char **argv) {
             }
         }
     } while(1);
-	endwin();
+	endwin(); // End
 
 end:
     // TODO: Scoreboard

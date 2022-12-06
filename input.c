@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include "input.h"
+#include "config.h"
 
 int t = 0, Triangle = 0, Circle = 0, X = 0, Square = 0, JLX = 0, JLY = 0, JRX = 0, JRY = 0;
 int deadZone = 30, PJLX = 0, PJLY = 0, xCount = 0, yCount = 0, limitX = 1200, limitY = 2000;
@@ -23,6 +24,8 @@ Direction input_direction(){
 		endwin();
 		exit(0);
 	}
+
+	// if (Circle && DEBUG_MODE) player
 
 	// Add to the movement buffers
 	if(JLX > deadZone && PJLX <= deadZone) xCount = limitX;
