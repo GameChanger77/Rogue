@@ -116,7 +116,6 @@ void render_enter_room(const Player *player, const Room *room) {
 void render_anim(const Player *player, const Room *room) {
     char coin_char = render_get_coin_char();
     const RoomData *room_data = room_get_tiles(room);
-    mvprintw(1, 0, "Coins: %d", player->coins);
     for(int x = 0; x < 40; x++) {
         for(int y = 0; y < 20; y++) {
             switch((*room_data)[y][x]) {
@@ -189,6 +188,8 @@ void render_anim(const Player *player, const Room *room) {
     attron(COLOR_PAIR(3));
     mvaddch(player->room_y + 2, player->room_x + 19, player_char);
     attroff(COLOR_PAIR(3));
+
+    mvprintw(1, 0, "Coins: %d", player->coins);
 
     prev_player_x = player->room_x;
     prev_player_y = player->room_y;
