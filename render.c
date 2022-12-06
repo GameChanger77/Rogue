@@ -189,7 +189,13 @@ void render_anim(const Player *player, const Room *room) {
     mvaddch(player->room_y + 2, player->room_x + 19, player_char);
     attroff(COLOR_PAIR(3));
 
+    if(coin_anim_on) {
+        attron(COLOR_PAIR(1));
+    }
     mvprintw(1, 0, "Coins: %d", player->coins);
+    if(coin_anim_on) {
+        attroff(COLOR_PAIR(1));
+    }
 
     prev_player_x = player->room_x;
     prev_player_y = player->room_y;
