@@ -206,7 +206,7 @@ int win_time = 0;
 bool render_win(const Player *player, const Room *room) {
     if(!win_time) win_time = input_time();
     int time = input_time() - win_time;
-    while(time < 3000) {
+    if(time < 3000) {
         if(time % 1000 < 500) {
             clear();
             init_pair(1, COLOR_WHITE, COLOR_WHITE);
@@ -220,5 +220,8 @@ bool render_win(const Player *player, const Room *room) {
             init_pair(3, COLOR_CYAN, COLOR_BLACK);
             init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
         }
+        refresh();
+        return 1;
     }
+    return 0;
 }
