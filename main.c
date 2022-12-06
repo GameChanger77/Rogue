@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
             } else {
                 changed_room = room_move(direction, &player, current_room);
             }
-            if(player.coins >= 50) {
+            if(player.coins >= 5) {
                 while(render_win(&player, current_room)) input_scan();
                 endwin();
                 puts("You win!");

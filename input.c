@@ -6,17 +6,20 @@
 int t = 0, Triangle = 0, Circle = 0, X = 0, Square = 0, JLX = 0, JLY = 0, JRX = 0, JRY = 0;
 int deadZone = 30, PJLX = 0, PJLY = 0, xCount = 0, yCount = 0, limitX = 1200, limitY = 2000;
 
-void input_scan(){ // Scan in the input
+// Scan in the input
+void input_scan(){ 
 	scanf("%d, %d,%d,%d,%d, %d, %d, %d, %d ", &t, &Triangle, &Circle, &X, &Square, &JLX, &JLY, &JRX, &JRY);
 }
 
-int input_time(){ // Gets the time from the controller
+// Gets the time from the controller
+int input_time(){ 
 	return t;
 }
 
 Direction input_direction(){
 	
-	if (Triangle){ // Exit the game
+	// Exit the game
+	if (Triangle){ 
 		endwin();
 		exit(0);
 	}
