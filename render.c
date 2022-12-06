@@ -210,7 +210,7 @@ bool render_win(const Player *player, const Room *room) {
     if(time < 3000) {
         if(time % 1000 < 500) {
             init_pair(1, COLOR_WHITE, COLOR_WHITE);
-            bkgd(COLOR_PAIR(1));
+            bkgd(COLOR_PAIR(1) | ' ');
             clear();
             already_rerendered = 0;
         } else {
@@ -218,7 +218,7 @@ bool render_win(const Player *player, const Room *room) {
             init_pair(2, COLOR_WHITE, COLOR_WHITE);
             init_pair(3, COLOR_CYAN, COLOR_BLACK);
             init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
-            bkgd(0);
+            bkgd(' ');
             if(!already_rerendered) render_enter_room(player, room); // Re-render the room
             already_rerendered = 1;
         }
