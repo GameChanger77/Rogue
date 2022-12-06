@@ -52,7 +52,9 @@ static void render_check_coin(int x, int y, int coins) {
 void render_room_tile(int x, int y, const RoomData *room_data) {
     char coin_char = render_get_coin_char();
     switch((*room_data)[y][x]) {
-        case ' ': break;
+        case ' ':
+            plot_char(x, y, ' ');
+            break;
         case '#':
             attron(COLOR_PAIR(2));
             mvaddch(2 + y, 19 + x, ' ');
