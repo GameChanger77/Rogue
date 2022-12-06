@@ -18,8 +18,7 @@ char player_char = '>';
 
 int prev_player_x = 0;
 int prev_player_y = 10;
-
-bool coin_north, coin_south, coin_west, coin_east;
+int prev_coins = 0;
 
 int coin_anim_x, coin_anim_y, coin_anim_start, coin_anim_on = 0;
 
@@ -37,12 +36,9 @@ static char render_get_coin_char() {
     else           return '0';
 }
 
-static void render_check_coin(int x, int y, const Room *room) {
+static void render_check_coin(int x, int y, int coins) {
     if(
-        (x < prev_player_x && coin_west) ||
-        (x > prev_player_x && coin_east) ||
-        (y < prev_player_y && coin_north) ||
-        (y > prev_player_y && coin_south)
+        coins != prev_coins
     ) {
         plot_char(x, y, ' ');
         coin_anim_x = x;
@@ -50,12 +46,7 @@ static void render_check_coin(int x, int y, const Room *room) {
         coin_anim_start = input_time();
         coin_anim_on = 1;
     }
-
-    const RoomData *room_data = room_get_tiles(room);
-    coin_north = y > 0 && (*room_data)[x][y - 1] == 'C';
-    coin_south = y < 19 && (*room_data)[x][y + 1] == 'C';
-    coin_west = x > 0 && (*room_data)[x - 1][y] == 'C';
-    coin_east = x < 39 && (*room_data)[x + 1][y] == 'C';
+    prev_coins = coins;
 }
 
 void render_room_tile(int x, int y, const RoomData *room_data) {
@@ -101,7 +92,7 @@ void render_enter_room(const Player *player, const Room *room) {
             render_room_tile(x, y, room_data);
         }
     }
-    render_check_coin(player->room_x, player->room_y, room);
+    render_check_coin(player->room_x, player->room_y, player->coins);
     if(prev_player_y > player->room_y) player_char = 'v';
     else if(prev_player_y < player->room_y) player_char = '^';
     else if(prev_player_x > player->room_x) player_char = '>';
@@ -133,7 +124,7 @@ void render_anim(const Player *player, const Room *room) {
     }
 
     if(prev_player_x != player->room_x || prev_player_y != player->room_y) {
-        render_check_coin(player->room_x, player->room_y, room);
+        render_check_coin(player->room_x, player->room_y, player->coins);
     }
 
     if(coin_anim_on) {
