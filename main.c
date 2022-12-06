@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
             // Movement
             if(direction == None) { // Stay Still
                 render_anim(&player, current_room);
-                if(player.coins >= 5) {
+                if(player.coins >= 15) {
                     while(render_win(&player, current_room)) input_scan();
                     endwin();
                     puts("You win!");
