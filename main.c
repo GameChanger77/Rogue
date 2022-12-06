@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
     player.room_y = 10;
     player.screen_x = 0;
     player.screen_y = 0;
-    player.coins = 4;
+    player.coins = 0;
 
     // Game loop
     do {
@@ -82,10 +82,14 @@ int main(int argc, char **argv) {
             input_scan();
             Direction direction = input_direction();
 
+            // Give the player coins for debugging
+            if (get_circle() && DEBUG_MODE)
+		            player.coins++;
+
             // Movement
             if(direction == None) { // Stay Still
                 render_anim(&player, current_room);
-                if(player.coins >= 50) {
+                if(player.coins >= 5) {
                     while(render_win(&player, current_room)) input_scan();
                     endwin();
                     puts("You win!");

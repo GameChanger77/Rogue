@@ -3,10 +3,11 @@
 #include "player.h"
 #include "input.h"
 #include "roomgen.h"
+#include "config.h"
 
 
 void move_character(Direction direction, Player* player) {
-	// get the player X and Y
+	// Get the player X and Y
 	int desiredX = player->room_x;
 	int desiredY = player->room_y;
 	

@@ -43,25 +43,29 @@ Direction input_direction(){
 	else yCount = 0;
 
 	// Return the direction to move
-	if (xCount > limitX){
+	if (xCount > limitX){ // Right
 		xCount = 0;
 		return Right;
 	}
 	
-	if (xCount < -limitX){
+	if (xCount < -limitX){ // Left
 		xCount = 0;
 		return Left;
 	}
 
-	if (yCount > limitY){
+	if (yCount > limitY){ // Down
 		yCount = 0;
 		return Down;
 	}
 
-	if (yCount < -limitY){
+	if (yCount < -limitY){ // Up
 		yCount = 0;
 		return Up;
 	}
 	
 	return None; // Stand Still
+}
+
+int get_circle(){
+	return Circle;
 }
