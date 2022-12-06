@@ -79,14 +79,14 @@ int main(int argc, char **argv) {
             Direction direction = input_direction();
             if(direction == None) {
                 render_anim(&player, current_room);
+                if(player.coins >= 50) {
+                    while(render_win(&player, current_room)) input_scan();
+                    endwin();
+                    puts("You win!");
+                    goto end;
+                }
             } else {
                 changed_room = room_move(direction, &player, current_room);
-            }
-            if(player.coins >= 50) {
-                while(render_win(&player, current_room)) input_scan();
-                endwin();
-                puts("You win!");
-                goto end;
             }
         }
     } while(1);
